@@ -14,7 +14,7 @@ public class Grab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        grabRadius = 1; 
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class Grab : MonoBehaviour
         RaycastHit[] hits;
 
         // only react for objects in the correct layers
-        hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0f, grabMask);
+        hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0.0f, grabMask);
     
         if (hits.Length > 0)
         {
@@ -46,9 +46,13 @@ public class Grab : MonoBehaviour
 
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i].distance < hits[closestHit].distance)
+                if (hits[i].collider != null) Debug.Log(hits[i].collider.name + " has been hit. Its distance is: " + hits[i].distance);
+
+                if ((hits[i]).distance < hits[closestHit].distance)
                 {
                     closestHit = i;
+                    Debug.Log(hits[i].collider.name + " has been selected. Its distance is: " + hits[i].distance);
+
                 }
             }
 
