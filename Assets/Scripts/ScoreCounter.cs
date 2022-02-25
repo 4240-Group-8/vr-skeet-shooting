@@ -1,28 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class ScoreCounter : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Text scoreCounter;
     public int score = 0;
-
-    /*
-    IEnumerator AddPoint()
+    void Start()
     {
-        if (listen for event)
-        {
-            score++;
-            // consider moving the udpate here also
-        }
+        scoreCounter.text = score + "";
     }
-    */
-
-    // Update is called once per frame
-    void Update()
+    public void AddPoint()
     {
+        score++;
         scoreCounter.text = score + ""; // convert to string
     }
 }
