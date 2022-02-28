@@ -297,7 +297,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &-2902553275927054514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,21 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakSmoke: {fileID: 8033965413074878699, guid: 8dcd0f6115172dd4da863ae610816499, type: 3}
-  targetDestroyed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &826510706388029512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333,7 +318,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4317633587780533244}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 794afc885df224b40988eea99ac4b545, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

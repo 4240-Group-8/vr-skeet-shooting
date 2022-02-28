@@ -1,51 +1,80 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
 /// Implements a timer which displays the time remaining in mins and secs.
-/// TODO: figure out how to structure events so that the completion auto-adds the score to leaderboard
-/// and resets it, while stopping the timer just resets the score. 
+/// Controls when ScoreCounter creates a new leaderboard entry or resets.
 ///
 /// @author Ian
 /// @author referenced https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/j:w
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    public float durationInMinutes = 5;
+    public float durationInMinutes = 0.5f;
     private float _secsRemaining;
-    public bool timerIsRunning = false;
+    private bool _timerIsRunning = false;
     public Text display;
+    private ScoreCounter _sc;
+    private UnityEvent _startTimer = new UnityEvent(); // can make public later on
+    private UnityEvent _stopTimer = new UnityEvent(); // can make public later on
+    private UnityEvent _resetTimer = new UnityEvent(); // can make public later on
     void Start()
     {
         _secsRemaining = durationInMinutes * 60;
-        ConvertToMinSec(_secsRemaining);
+        DisplayAsMinSec(_secsRemaining);
+        
+        _sc = FindObjectOfType<Canvas>().GetComponent<ScoreCounter>();
+        
+        _startTimer.AddListener(delegate 
+        {
+            _timerIsRunning = true;
+            _sc.StartCountingScore();
+        });
+        
+        _stopTimer.AddListener(delegate 
+        {
+            _timerIsRunning = false;
+            _secsRemaining = 0;
+            display.text = "00:00";
+            _sc.SaveScore();
+            _sc.StopCountingScore();
+        });
+        
+        _resetTimer.AddListener(delegate 
+        {
+            _timerIsRunning = false;
+            _secsRemaining = durationInMinutes * 60;
+            DisplayAsMinSec(_secsRemaining);
+            _sc.ResetScore();
+            _sc.StopCountingScore();
+        });
+        
     }
 
     void Update()
     {
-        if (timerIsRunning)
+        if (_timerIsRunning)
         {
-            if (_secsRemaining > 0)
+            if (_secsRemaining > 0) // timer counting down
             {
                 // for every frame, subtract the time taken for prev frame
                 _secsRemaining -= Time.deltaTime; 
-                ConvertToMinSec(_secsRemaining);
+                DisplayAsMinSec(_secsRemaining);
             }
-            else
+            else // timer ended naturally
             {
-                Debug.Log("Time has run out!");
-                _secsRemaining = 0;
-                display.text = "0:00";
-                timerIsRunning = false;
+                _stopTimer.Invoke();
             }
         }
-        if (Input.GetButtonDown("Submit")) // A, joystick button 0, on R ctrller
+        
+        if (Input.GetButtonDown("Submit")) 
         {
-            ControlTime();
+            ControlTime(); // start, stop or reset time
         }
     }
 
-    private void ConvertToMinSec(float time)
+    private void DisplayAsMinSec(float time)
     {
         float m = Mathf.FloorToInt(time / 60);
         float s = Mathf.FloorToInt(time % 60);
@@ -53,27 +82,19 @@ public class Timer : MonoBehaviour
     }
     
     /// <summary>
-    /// Stops, resets, and restarts the timer to control play sessions.
-    /// Based on whether the timer has run out or is still running.
+    /// Starts, stops and resets timer.
     /// 
-    /// To be called by a UnityEvent linked to the bottom button on the right controller (A, joystick button 0)
+    /// Called by pressing the bottom button on the right controller. (A, joystick button 0)
     /// </summary>
     public void ControlTime()
     {
-        if (_secsRemaining == 0) // reset timer
+        if (_secsRemaining == 0 || _timerIsRunning)
         {
-            _secsRemaining = durationInMinutes * 60;
-            ConvertToMinSec(_secsRemaining);
+            _resetTimer.Invoke();
         }
-        else if (timerIsRunning) // stop and reset timer
+        else
         {
-            timerIsRunning = false;
-            _secsRemaining = durationInMinutes * 60;
-            ConvertToMinSec(_secsRemaining);
-        }
-        else // start timer
-        {
-            timerIsRunning = true;
+            _startTimer.Invoke();
         }
     }
 }

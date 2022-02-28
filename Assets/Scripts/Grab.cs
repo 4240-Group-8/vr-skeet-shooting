@@ -46,7 +46,8 @@ public class Grab : MonoBehaviour
 
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i].collider != null) Debug.Log(hits[i].collider.name + " has been hit. Its distance is: " + hits[i].distance);
+                // can't figure out why grabbing nearest object is buggy
+                // if (hits[i].collider != null) Debug.Log(hits[i].collider.name + " has been hit. Its distance is: " + hits[i].distance);
 
                 if ((hits[i]).distance < hits[closestHit].distance)
                 {
