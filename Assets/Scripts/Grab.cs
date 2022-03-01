@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
+    public EventChannel pigeonPickup;
     public OVRInput.Controller Controller; // L or R
     public string buttonName;
     public float grabRadius; // range of sphere cast
@@ -14,15 +13,15 @@ public class Grab : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grabRadius = 1; 
+        grabRadius = 1;
     }
-
     // Update is called once per frame
     void Update()
     {
         if (!grabbing && Input.GetAxis(buttonName) == 1)
         {
             GrabObject();
+            pigeonPickup.Publish();
         }
 
         if (grabbing && Input.GetAxis(buttonName) < 1)
@@ -81,6 +80,7 @@ public class Grab : MonoBehaviour
         }
     }
 
+    // currently not in use
     public void AdjustRadius(float newRadius)
     {
         grabRadius = newRadius;

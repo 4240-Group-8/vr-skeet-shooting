@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 /// <summary>
@@ -11,47 +10,34 @@ using UnityEngine.UI;
 /// </summary>
 public class Timer : MonoBehaviour
 {
+    public EventChannel startTimer;
+    public EventChannel stopTimer;
+    public EventChannel resetTimer;
     public float durationInMinutes = 0.5f;
     private float _secsRemaining;
     private bool _timerIsRunning = false;
     public Text display;
     private ScoreCounter _sc;
-    private UnityEvent _startTimer = new UnityEvent(); // can make public later on
-    private UnityEvent _stopTimer = new UnityEvent(); // can make public later on
-    private UnityEvent _resetTimer = new UnityEvent(); // can make public later on
     void Start()
     {
+        // Set up text object on UI
         _secsRemaining = durationInMinutes * 60;
         DisplayAsMinSec(_secsRemaining);
         
+        // Assign objects
         _sc = FindObjectOfType<Canvas>().GetComponent<ScoreCounter>();
-        
-        _startTimer.AddListener(delegate 
-        {
-            _timerIsRunning = true;
-            _sc.StartCountingScore();
-        });
-        
-        _stopTimer.AddListener(delegate 
-        {
-            _timerIsRunning = false;
-            _secsRemaining = 0;
-            display.text = "00:00";
-            _sc.SaveScore();
-            _sc.StopCountingScore();
-        });
-        
-        _resetTimer.AddListener(delegate 
-        {
-            _timerIsRunning = false;
-            _secsRemaining = durationInMinutes * 60;
-            DisplayAsMinSec(_secsRemaining);
-            _sc.ResetScore();
-            _sc.StopCountingScore();
-        });
-        
+        startTimer.OnChange += StartTimer;
+        stopTimer.OnChange += StopTimer;
+        resetTimer.OnChange += ResetTimer;
     }
 
+    private void OnDestroy()
+    {
+        // Unsubscribe so it doesn't cause memory leak
+        startTimer.OnChange -= StartTimer;
+        stopTimer.OnChange -= StopTimer;
+        resetTimer.OnChange -= ResetTimer;
+    }
     void Update()
     {
         if (_timerIsRunning)
@@ -64,7 +50,7 @@ public class Timer : MonoBehaviour
             }
             else // timer ended naturally
             {
-                _stopTimer.Invoke();
+                stopTimer.Publish();
             }
         }
         
@@ -90,11 +76,34 @@ public class Timer : MonoBehaviour
     {
         if (_secsRemaining == 0 || _timerIsRunning)
         {
-            _resetTimer.Invoke();
+            resetTimer.Publish();
         }
         else
         {
-            _startTimer.Invoke();
+            startTimer.Publish();
         }
+    }
+    
+    private void StartTimer()
+    {
+        _timerIsRunning = true;
+        _sc.StartCountingScore();
+    }
+    private void StopTimer()
+    {
+        _timerIsRunning = false;
+        _secsRemaining = 0;
+        display.text = "00:00";
+        _sc.SaveScore();
+        _sc.StopCountingScore();
+    }
+    
+    private void ResetTimer()
+    {
+        _timerIsRunning = false;
+        _secsRemaining = durationInMinutes * 60;
+        DisplayAsMinSec(_secsRemaining);
+        _sc.ResetScore();
+        _sc.StopCountingScore();
     }
 }

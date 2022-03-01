@@ -3,7 +3,11 @@ guid: b56cf6b78c9372e42a57fa0d59e86153
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - display: {instanceID: 0}
+  - startTimer: {fileID: 11400000, guid: 7dc1449bdd805f44d8748ca5748cabba, type: 2}
+  - stopTimer: {fileID: 11400000, guid: e3ac8f00caefa7449977e3de024d7cbe, type: 2}
+  - resetTimer: {fileID: 11400000, guid: 4f412b772ecb457469dd2ba77da30aa1, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
