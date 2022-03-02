@@ -13,19 +13,17 @@ public class Timer : MonoBehaviour
     public EventChannel startTimer;
     public EventChannel stopTimer;
     public EventChannel resetTimer;
+    public string timerButton;
     public float durationInMinutes = 0.5f;
     private float _secsRemaining;
     private bool _timerIsRunning = false;
     public Text display;
-    private ScoreCounter _sc;
     void Start()
     {
         // Set up text object on UI
         _secsRemaining = durationInMinutes * 60;
         DisplayAsMinSec(_secsRemaining);
         
-        // Assign objects
-        _sc = FindObjectOfType<Canvas>().GetComponent<ScoreCounter>();
         startTimer.OnChange += StartTimer;
         stopTimer.OnChange += StopTimer;
         resetTimer.OnChange += ResetTimer;
@@ -33,7 +31,6 @@ public class Timer : MonoBehaviour
 
     private void OnDestroy()
     {
-        // Unsubscribe so it doesn't cause memory leak
         startTimer.OnChange -= StartTimer;
         stopTimer.OnChange -= StopTimer;
         resetTimer.OnChange -= ResetTimer;
@@ -54,7 +51,7 @@ public class Timer : MonoBehaviour
             }
         }
         
-        if (Input.GetButtonDown("Submit")) 
+        if (Input.GetButtonDown(timerButton)) 
         {
             ControlTime(); // start, stop or reset time
         }
@@ -87,15 +84,12 @@ public class Timer : MonoBehaviour
     private void StartTimer()
     {
         _timerIsRunning = true;
-        _sc.StartCountingScore();
     }
     private void StopTimer()
     {
         _timerIsRunning = false;
         _secsRemaining = 0;
         display.text = "00:00";
-        _sc.SaveScore();
-        _sc.StopCountingScore();
     }
     
     private void ResetTimer()
@@ -103,7 +97,5 @@ public class Timer : MonoBehaviour
         _timerIsRunning = false;
         _secsRemaining = durationInMinutes * 60;
         DisplayAsMinSec(_secsRemaining);
-        _sc.ResetScore();
-        _sc.StopCountingScore();
     }
 }

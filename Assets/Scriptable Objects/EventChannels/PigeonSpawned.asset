@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3981c4df171e41e4c87ae0de879fb98a, type: 3}
-  m_Name: TimerReset
+  m_Script: {fileID: 11500000, guid: 61e45f59d5f44ef08aa7dd086e8ad3a1, type: 3}
+  m_Name: PigeonSpawned
   m_EditorClassIdentifier: 
+  pigeon: {fileID: 0}

@@ -1,30 +1,30 @@
 using UnityEngine;
 
+/// <summary>
+/// Lets the player grab objects around them. Attached to the L and R hands.
+/// <author>ian-from-dover</author>
+/// feel free to add your authorship here
+/// </summary>
 public class Grab : MonoBehaviour
 {
     public EventChannel pigeonPickup;
-    public OVRInput.Controller Controller; // L or R
-    public string buttonName;
-    public float grabRadius; // range of sphere cast
+    public EventChannel gunEquipped;
+    public OVRInput.Controller Controller; // placed on L and R
     public LayerMask grabMask; // only obj in this layer can be grabbed
+    public string buttonName;
+    public float grabRadius = 1; // range of sphere cast
 
-    private GameObject grabbedObject; // obj being held
-    private bool grabbing; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        grabRadius = 1;
-    }
-    // Update is called once per frame
+    private GameObject _grabbedObject;
+    private bool _grabbing;
+
     void Update()
     {
-        if (!grabbing && Input.GetAxis(buttonName) == 1)
+        if (!_grabbing && Input.GetAxis(buttonName) == 1)
         {
             GrabObject();
-            pigeonPickup.Publish();
         }
 
-        if (grabbing && Input.GetAxis(buttonName) < 1)
+        if (_grabbing && Input.GetAxis(buttonName) < 1)
         {
             DropObject();
         }
@@ -32,7 +32,7 @@ public class Grab : MonoBehaviour
 
     void GrabObject()
     {
-        grabbing = true;
+        _grabbing = true;
 
         RaycastHit[] hits;
 
@@ -56,33 +56,29 @@ public class Grab : MonoBehaviour
                 }
             }
 
-            grabbedObject = hits[closestHit].transform.gameObject;
-            grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
-            grabbedObject.transform.position = transform.position;
-            grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
+            _grabbedObject = hits[closestHit].transform.gameObject;
+            _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
+            _grabbedObject.transform.position = transform.position;
+            _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
+            pigeonPickup.Publish();
         }
     }
 
     void DropObject()
     {
-        grabbing = false;
+        _grabbing = false;
 
-        if (grabbedObject != null)
+        if (_grabbedObject != null)
         {
-            grabbedObject.transform.parent = null; // makes obj child of ctrler so they move tgt
+            _grabbedObject.transform.parent = null; // makes obj child of ctrler so they move tgt
 
-            grabbedObject.GetComponent<Rigidbody>().isKinematic = false; // gravity dont work on obj while it is held
+            _grabbedObject.GetComponent<Rigidbody>().isKinematic = false; // gravity dont work on obj while it is held
 
-            grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(Controller); 
-            grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
+            _grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(Controller); 
+            _grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
 
-            grabbedObject = null; // makes obj child of ctrler so they move tgt
+            _grabbedObject = null; // makes obj child of ctrler so they move tgt
+            gunEquipped.Publish();
         }
-    }
-
-    // currently not in use
-    public void AdjustRadius(float newRadius)
-    {
-        grabRadius = newRadius;
     }
 }

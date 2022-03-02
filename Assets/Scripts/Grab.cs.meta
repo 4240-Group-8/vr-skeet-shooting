@@ -3,7 +3,10 @@ guid: 734c4678f454d1546a69fd72b80302c4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pigeonPickup: {fileID: 11400000, guid: fa98f3e8981460f44b413c5a1463d3f9, type: 2}
+  - pigeonThrow: {fileID: 11400000, guid: 0a67331d1e7f15f4499cefb384a5b957, type: 2}
+  - gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

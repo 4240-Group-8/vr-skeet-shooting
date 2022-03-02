@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3981c4df171e41e4c87ae0de879fb98a, type: 3}
-  m_Name: TimerStart
+  m_Name: PigeonPickedUp
   m_EditorClassIdentifier: 

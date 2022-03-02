@@ -4,7 +4,7 @@ using UnityEngine;
 public class UiFollowPlayer : MonoBehaviour
 {
     public Transform hoverPos; // A hovering follow target under the player 
-    // public Transform player; // if you want the menu to always look at the player but got to fix the flip
+    // public Transform player; // if you want the menu to always look at the player but got to fix the mirroring of the Ui (idk why it happens)
     public float positionSpeedMultiplier = 1;
     public float rotateSpeedMultiplier = 1;
     private float positionSmoothTime = 0.2f;
@@ -23,6 +23,7 @@ public class UiFollowPlayer : MonoBehaviour
                                           rotateSpeed * rotateSpeedMultiplier);
         /*
         // Always look at player (assign player to main camera)
+        
         // but for some reason it horizontally mirrors the canvas
         Vector3 relativePos = player.position - t.position;
         t.rotation = Quaternion.LookRotation(relativePos, new Vector3(0, 1, 0));

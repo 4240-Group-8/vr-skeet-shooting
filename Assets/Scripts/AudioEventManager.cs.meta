@@ -3,7 +3,24 @@ guid: e6913ee7239d6bf44adbf867ce73d689
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerTeleported: {fileID: 11400000, guid: 1923e79057edc1041b177c7bcf6dddb0, type: 2}
+  - timeSlowed: {fileID: 11400000, guid: 4c82f4f23cf9e204ba54bf67aa4cb737, type: 2}
+  - timeResumed: {fileID: 11400000, guid: 4f412b772ecb457469dd2ba77da30aa1, type: 2}
+  - gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
+  - gunShot: {fileID: 11400000, guid: 34fb9cabad0ef104f80eaa3f1fe626b6, type: 2}
+  - pointScored: {fileID: 11400000, guid: efd1c833e2b36234aa02eed621039d62, type: 2}
+  - pointNotScored: {fileID: 11400000, guid: 0dcfeeef813b6504a96675d7ae949dee, type: 2}
+  - pigeonPickedUp: {fileID: 11400000, guid: fa98f3e8981460f44b413c5a1463d3f9, type: 2}
+  - timerStarted: {fileID: 11400000, guid: 7dc1449bdd805f44d8748ca5748cabba, type: 2}
+  - timerStopped: {fileID: 11400000, guid: e3ac8f00caefa7449977e3de024d7cbe, type: 2}
+  - timerReset: {fileID: 11400000, guid: 4f412b772ecb457469dd2ba77da30aa1, type: 2}
+  - playerCamera: {instanceID: 0}
+  - gunHand: {instanceID: 0}
+  - nCrowd: {instanceID: 0}
+  - sCrowd: {instanceID: 0}
+  - eCrowd: {instanceID: 0}
+  - wCrowd: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

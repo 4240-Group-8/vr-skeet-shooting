@@ -1,20 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Plays all the audio in the game.
+/// In particular, manages the crowd's cheering behaviour.
+/// </summary>
 public class AudioEventManager : MonoBehaviour
 {
-    // Event Channels
+    // Event Channels in the order that they happen
     public EventChannel playerTeleported;
     public EventChannel timeSlowed;
     public EventChannel timeResumed;
     public EventChannel gunEquipped;
+    public EventChannel gunUnequipped;
     public EventChannel gunShot;
-    public EventChannel pigeonPickedUp;
-    public EventChannel pigeonSpawned;
-    public EventChannel pigeonThrown;
     public EventChannel pointScored;
     public EventChannel pointNotScored;
+    public EventChannel pigeonPickedUp;
     public EventChannel timerStarted;
     public EventChannel timerStopped;
     public EventChannel timerReset;
@@ -29,10 +31,11 @@ public class AudioEventManager : MonoBehaviour
     private AudioSource _sEquipGun; 
     private AudioSource _sShootGun; 
     
-    public GameObject pigeon; // bound when pigeonSpawn is called (when pigeon is spawned)
-    private AudioSource _sPigeonPickup; 
-    private AudioSource _sPigeonThrow; 
-    private AudioSource _sPigeonBreak; 
+    public GameObject timerCanvas;
+    private AudioSource _sTimerStart; 
+    private AudioSource _sTimerStop; 
+    private AudioSource _sTimerReset;
+    private bool _timerIsCounting = true; // for the initial crowd sound
     
     // N S E W north south east west
     public GameObject nCrowd;
@@ -65,19 +68,20 @@ public class AudioEventManager : MonoBehaviour
     private List<AudioSource> _excitedLoops = new List<AudioSource>();
     void Start()
     {
-        // Subscribe methods to event channels
-        pigeonSpawned.OnChange += PigeonSpawned;
-        
-        
-        // Impossible to specify in editor which sound on same gameObject to assign
+        // Impossible to specify in editor which sound component on the same gameObject to assign
         AudioSource[] playerSounds = playerCamera.GetComponents<AudioSource>();
         _sTeleport = playerSounds[0];
         _sTimeSlow = playerSounds[1];
         _sTimeResume = playerSounds[2];
         
         AudioSource[] gunSounds = gunHand.GetComponents<AudioSource>();
-        _sEquipGun = gunSounds[0];
-        _sShootGun = gunSounds[1];
+        _sShootGun = gunSounds[0];
+        _sEquipGun = gunSounds[1];
+        
+        AudioSource[] timerSounds = timerCanvas.GetComponents<AudioSource>();
+        _sTimerStart = timerSounds[0];
+        _sTimerStop = timerSounds[1];
+        _sTimerReset = timerSounds[2];
         
         AudioSource[] nCrowdSounds = nCrowd.GetComponents<AudioSource>();
         _sCrowdCheerN = nCrowdSounds[0];
@@ -118,21 +122,134 @@ public class AudioEventManager : MonoBehaviour
         _sads.Add(_sCrowdSadW);
         _normalLoops.Add(_sCrowdNormalLoopW);
         _excitedLoops.Add(_sCrowdExcitedLoopW);
+        
+        // Subscribe methods to event channels
+        pigeonPickedUp.OnChange += CrowdExcitedLoop;
+        pointScored.OnChange += CrowdNormalLoop;
+        pointScored.OnChange += CrowdCheer;
+        pointScored.OnChange += PigeonDestroyed;
+        pointNotScored.OnChange += CrowdNormalLoop;
+        pointNotScored.OnChange += CrowdSad;
+        pointNotScored.OnChange += PigeonDestroyed;
+        gunEquipped.OnChange += EquipGun;
+        gunShot.OnChange += ShootGun;
+        playerTeleported.OnChange += Teleport;
+        timeSlowed.OnChange += SlowTime;
+        timeResumed.OnChange += ResumeTime;
+        timerStarted.OnChange += StartTimer;
+        timerStopped.OnChange += CrowdNormalLoop;
+        timerStopped.OnChange += StopTimer;
+        timerReset.OnChange += ResetTimer;
+        
+        CrowdNormalLoop();
+        _timerIsCounting = false;
     }
-
+    
     void OnDestroy()
     {
         // unsubscribe event channels to prevent resource leak
-        pigeonSpawned.OnChange -= PigeonSpawned;
+        pigeonPickedUp.OnChange -= CrowdExcitedLoop;
+        pointScored.OnChange -= CrowdNormalLoop;
+        pointScored.OnChange -= PigeonDestroyed;
+        pointScored.OnChange -= CrowdCheer;
+        pointNotScored.OnChange -= CrowdNormalLoop;
+        pointNotScored.OnChange -= CrowdSad;
+        pointNotScored.OnChange -= PigeonDestroyed;
+        gunEquipped.OnChange -= EquipGun;
+        gunShot.OnChange -= ShootGun;
+        playerTeleported.OnChange -= Teleport;
+        timeSlowed.OnChange -= SlowTime;
+        timeResumed.OnChange -= ResumeTime;
+        timerStarted.OnChange -= StartTimer;
+        timerStopped.OnChange -= CrowdNormalLoop;
+        timerStopped.OnChange -= StopTimer;
+        timerReset.OnChange -= ResetTimer;
     }
 
-    void PigeonSpawned() // change this to have pigeon param
+    void PigeonDestroyed()
     {
-        pigeon = GameObject.Find("ClayPigeon"); // but what if player spawns more than 1
-        AudioSource[] pigeonSounds = pigeon.GetComponents<AudioSource>();
-        _sPigeonPickup = pigeonSounds[0];
-        _sPigeonThrow = pigeonSounds[1];
-        _sPigeonBreak = pigeonSounds[2];
-        
+        gunUnequipped.Publish();
+    }
+
+    private void Teleport()
+    {
+        _sTeleport.Play();
+    }
+    private void SlowTime()
+    {
+        _sTimeSlow.Play();
+    }
+    private void ResumeTime()
+    {
+        _sTimeResume.Play();
+    }
+    private void StartTimer()
+    {
+        _sTimerStart.Play();
+        _timerIsCounting = true;
+    }
+    private void StopTimer()
+    {
+        _sTimerStop.Play();
+        _timerIsCounting = false;
+    }
+    private void ResetTimer()
+    {
+        _sTimerReset.Play();
+        _timerIsCounting = false;
+    }
+    private void CrowdCheer()
+    {
+        if (_timerIsCounting)
+        {
+            PlayCrowdSound(_cheers);
+        }
+    }
+    private void CrowdSad()
+    {
+        if (_timerIsCounting)
+        {
+            PlayCrowdSound(_sads);
+        }
+    }
+    private void CrowdNormalLoop()
+    {
+        if (_timerIsCounting)
+        {
+            PlayCrowdSound(_normalLoops);
+            StopCrowdSound(_excitedLoops);
+        }
+    }
+    private void CrowdExcitedLoop()
+    {
+        if (_timerIsCounting)
+        {
+            PlayCrowdSound(_excitedLoops);
+            StopCrowdSound(_normalLoops);
+        }
+    }
+    private void PlayCrowdSound(List<AudioSource> sound)
+    {
+        foreach (AudioSource crowdSound in sound)
+        {
+            crowdSound.Play();
+        }
+    }
+
+    private void StopCrowdSound(List<AudioSource> sound) 
+    {
+        foreach (AudioSource crowdSound in sound)
+        {
+            crowdSound.Stop();
+        }
+    }
+
+    private void EquipGun()
+    {
+        _sEquipGun.Play();
+    }
+    private void ShootGun()
+    {
+        _sShootGun.Play();
     }
 }

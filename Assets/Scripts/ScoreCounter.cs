@@ -2,17 +2,38 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
+    public EventChannel pointScored;
+    public EventChannel startTimer;
+    public EventChannel stopTimer;
+    public EventChannel resetTimer;
     public Text scoreCounter;
-    public Canvas leaderboard;
-    public GameObject leaderboardItem; // prefab
-    public GameObject newLeaderboardItem; // instantiated
+    public Text leaderboardVal;
     public int score = 0;
-    private bool _isCountingScore = false;
+    private int _highscore = 0;
+    private bool _isCountingScore;
+    private static readonly string ZERO = "0"; // C#'s readonly == Java's final
     void Start()
     {
-        scoreCounter.text = score + "";
+        scoreCounter.text = ZERO;
+        leaderboardVal.text = ZERO;
+        pointScored.OnChange += AddPoint;
+        startTimer.OnChange += StartCountingScore;
+        stopTimer.OnChange += SaveScore;
+        stopTimer.OnChange += StopCountingScore;
+        resetTimer.OnChange += ResetScore;
+        resetTimer.OnChange += StopCountingScore;
     }
-    
+
+    private void OnDestroy()
+    {
+        pointScored.OnChange -= AddPoint;
+        startTimer.OnChange -= StartCountingScore;
+        stopTimer.OnChange -= SaveScore;
+        stopTimer.OnChange -= StopCountingScore;
+        resetTimer.OnChange -= ResetScore;
+        resetTimer.OnChange -= StopCountingScore;
+    }
+
     public void StartCountingScore()
     {
         _isCountingScore = true;
@@ -32,7 +53,7 @@ public class ScoreCounter : MonoBehaviour
         if (_isCountingScore)
         {
             score++;
-            scoreCounter.text = score + ""; // convert to string
+            scoreCounter.text = score + "";
         }
     }
     /// <summary>
@@ -40,13 +61,11 @@ public class ScoreCounter : MonoBehaviour
     /// </summary>
     public void SaveScore()
     {
-        // add a new ui element to leaderboard containing the score
-        /*
-        newLeaderboardItem = Instantiate(leaderboardItem, leaderboard.transform);
-        newLeaderboardItem.GetComponentInChildren<Text>().text = score + "";
-        */
-        // how do i know which text object it changes?
-        Debug.Log("Your new highscore is " + score);
+        if (score > _highscore)
+        {
+            _highscore = score;
+            leaderboardVal.text = _highscore + "";
+        }
     }
     
     /// <summary>
