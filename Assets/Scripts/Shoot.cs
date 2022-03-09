@@ -6,12 +6,25 @@ using UnityEngine;
 /// </summary>
 public class Shoot : MonoBehaviour
 {
+    [Header("Event Channel References")]
     public EventChannel gunEquipped;
     public EventChannel gunUnequipped;
     public EventChannel gunShot;
-    public string triggerButton;
-    public GameObject gunNozzle;
-    public GameObject bullet;
+    public string triggerButton = "RHTrigger";
+
+    [Header("Prefab References")]
+    public GameObject gunPrefab;
+    public GameObject bulletPrefab;
+    public GameObject muzzleFlashPrefab;
+    
+    [Header("Location References")]
+    [SerializeField] private Transform barrelLocation;
+    
+    [Header("Settings")]
+    [Tooltip("Specify time to destroy the casing object")] [SerializeField] private float destroyTimer = 2f;
+    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
+    [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
+    
     private bool _gunEnabled = false;
     private bool _cooledDown = true;
     public float coolDownInSeconds;
@@ -50,12 +63,29 @@ public class Shoot : MonoBehaviour
         _cooledDown = false;        
         _currentCoolDown = coolDownInSeconds;    
     }
+    
     private void ShootGun()
     {
-        Instantiate(bullet, gunNozzle.transform.position, gunNozzle.transform.rotation); // give it some extreme speed with the forward vector i'll leave you to do it
+        if (muzzleFlashPrefab)
+        {
+            // Create the muzzle flash
+            GameObject tempFlash  = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+
+            //Destroy the muzzle flash effect
+            Destroy(tempFlash, destroyTimer);
+        }
+
+        // Cancels if there's no bullet prefeb
+        if (!bulletPrefab)
+        { return; }
+        
+        // Create a bullet and add force on it in direction of the barrel
+        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation)
+            .GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
         gunShot.Publish();
     }
 
+    // Updates gun cooldown
     private void CoolDown()
     {
         if (_currentCoolDown > 0)
@@ -72,9 +102,12 @@ public class Shoot : MonoBehaviour
     private void EquipGun()
     {
         _gunEnabled = true;
+        gunPrefab.SetActive(true);
     }
+    
     private void UnequipGun()
     {
         _gunEnabled = false;
+        gunPrefab.SetActive(false);
     }
 }

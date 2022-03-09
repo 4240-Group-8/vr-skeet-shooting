@@ -17,6 +17,9 @@ public class BulletBehaviour : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
+        // PigeonBehaviour.cs handles smoke instantiation upon collision
+        // Collision with environment, do nothing
+        // TODO: implement decrease in bullets that player holds
         Destroy(gameObject);
     }
 }

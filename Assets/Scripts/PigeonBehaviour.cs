@@ -23,7 +23,7 @@ public class PigeonBehaviour : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet")) // to be added to bullet later on by @wenjin || @syasya
+        if (collision.gameObject.CompareTag("Bullet")) // to be added to bullet later on by @wenjin || @syasya (done)
         {
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
