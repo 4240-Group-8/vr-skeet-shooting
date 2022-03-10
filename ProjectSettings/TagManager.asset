@@ -8,6 +8,7 @@ TagManager:
   - Sound Test
   - Bullet
   - Pigeon
+  - Hoop
   layers:
   - Default
   - TransparentFX

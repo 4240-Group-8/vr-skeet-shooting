@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7502729277336137194}
   m_Layer: 0
   m_Name: Hoop
-  m_TagString: Untagged
+  m_TagString: Hoop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSlowed: {fileID: 11400000, guid: 4c82f4f23cf9e204ba54bf67aa4cb737, type: 2}
+  timerUiStarted: {fileID: 11400000, guid: 7dc1449bdd805f44d8748ca5748cabba, type: 2}
+  timerUiStopped: {fileID: 11400000, guid: e3ac8f00caefa7449977e3de024d7cbe, type: 2}
   gunUnequipped: {fileID: 11400000, guid: c472aaf3694105e43a21e4185ccdcae0, type: 2}
   green: {fileID: 2100000, guid: 01faaa8524f9b6e489eac14e2e1d5328, type: 2}
   smoke: {fileID: 8033965413074878699, guid: 8dcd0f6115172dd4da863ae610816499, type: 3}

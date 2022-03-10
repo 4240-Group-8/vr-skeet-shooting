@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class HoopBehaviour : MonoBehaviour
 {
+    // only start counting score when timer is running
     public EventChannel timeSlowed;
     public EventChannel gunUnequipped;
     public Material green;
@@ -48,7 +49,15 @@ public class HoopBehaviour : MonoBehaviour
     public void ClearHoop()
     {
         // problem: every hoop will make 1 smoke object at parenthoop there
-        Instantiate(smoke, parentHoop.transform.position, parentHoop.transform.rotation);
-        parentHoop.SetActive(false);
+        
+        // problem 2: pigeon hits the ground but has never gone through hoops before.
+        // got no parentHoop, breaks script
+        if (parentHoop != null)
+        {
+            Instantiate(smoke, parentHoop.transform.position, parentHoop.transform.rotation);
+            parentHoop.SetActive(false);
+            parentHoop = null;
+        }
     }
+
 }
