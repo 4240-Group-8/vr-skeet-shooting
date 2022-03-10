@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
 
     private bool _cooledDown = true;
-    public float coolDownInSeconds;
+    public float coolDownInSeconds = 10f;
     private float _currentCoolDown = 0.0f; // 0 is cooled down.
 
     public bool canShoot = false;
@@ -37,17 +37,13 @@ public class Gun : MonoBehaviour
         _cooledDown = true;
     }
 
-    private void OnDestroy()
-    {
-
-    }
-
     void Update()
     {
         if (_cooledDown && canShoot)
         {
             if (Input.GetAxis(triggerButton) == 1)
             {
+                // TODO: implement decrease in bullets that player holds
                 ShootGun();
                 MarkGunAsJustFired();
             }
