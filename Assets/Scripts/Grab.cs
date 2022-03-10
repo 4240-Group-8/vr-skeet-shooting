@@ -13,9 +13,11 @@ public class Grab : MonoBehaviour
     public LayerMask grabMask; // only obj in this layer can be grabbed
     public string buttonName;
     public float grabRadius = 1; // range of sphere cast
+    public Gun shootingGun;
 
     private GameObject _grabbedObject;
     private bool _grabbing;
+    
 
     void Update()
     {
@@ -57,10 +59,16 @@ public class Grab : MonoBehaviour
             }
 
             _grabbedObject = hits[closestHit].transform.gameObject;
+            
+            if (_grabbedObject.tag == "Gun")
+            {
+                shootingGun.canShoot = true;
+            }
+
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
-            pigeonPickup.Publish();
+            //pigeonPickup.Publish();
         }
     }
 
@@ -70,6 +78,11 @@ public class Grab : MonoBehaviour
 
         if (_grabbedObject != null)
         {
+            if (_grabbedObject.tag == "Gun")
+            {
+                shootingGun.canShoot = false;
+            }
+
             _grabbedObject.transform.parent = null; // makes obj child of ctrler so they move tgt
 
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = false; // gravity dont work on obj while it is held
@@ -78,7 +91,7 @@ public class Grab : MonoBehaviour
             _grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
 
             _grabbedObject = null; // makes obj child of ctrler so they move tgt
-            gunEquipped.Publish();
+            //gunEquipped.Publish();
         }
     }
 }

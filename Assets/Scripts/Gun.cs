@@ -4,56 +4,49 @@ using UnityEngine;
 /// Allows player to equip gun and shoot bullets
 /// TODO: enable gun after player throws pigeon off their hand
 /// </summary>
-public class Shoot : MonoBehaviour
+public class Gun : MonoBehaviour
 {
     [Header("Event Channel References")]
-    public EventChannel gunEquipped;
-    public EventChannel gunUnequipped;
     public EventChannel gunShot;
 
     [Header("Prefab References")]
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
-    
+
     [Header("References")]
     [SerializeField] private GameObject gunObject;
     [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform barrelLocation;
     [SerializeField] private Transform casingExitLocation;
-    
+
     [Header("Settings")]
     [Tooltip("Controller axis that triggers the shot")] [SerializeField] private string triggerButton = "RHTrigger";
     [Tooltip("Specify time to destroy the casing object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
-    
-    private bool _gunEnabled;
+
     private bool _cooledDown = true;
     public float coolDownInSeconds;
     private float _currentCoolDown = 0.0f; // 0 is cooled down.
+
+    public bool canShoot = false;
+
     void Start()
     {
-        // subscribes the methods to these events. it will activate when the event happens
-        gunEquipped.OnChange += EquipGun;
-        gunUnequipped.OnChange += UnequipGun;
-
-        // TODO: set _gunEnabled to false after working on shooting
-        _gunEnabled = true;
         _cooledDown = true;
     }
 
     private void OnDestroy()
     {
-        gunEquipped.OnChange -= EquipGun;
-        gunUnequipped.OnChange -= UnequipGun;
+
     }
 
     void Update()
     {
-        if (_cooledDown)
+        if (_cooledDown && canShoot)
         {
-            if (_gunEnabled && Input.GetAxis(triggerButton) == 1)
+            if (Input.GetAxis(triggerButton) == 1)
             {
                 ShootGun();
                 MarkGunAsJustFired();
@@ -67,16 +60,16 @@ public class Shoot : MonoBehaviour
 
     private void MarkGunAsJustFired()
     {
-        _cooledDown = false;        
-        _currentCoolDown = coolDownInSeconds;    
+        _cooledDown = false;
+        _currentCoolDown = coolDownInSeconds;
     }
-    
+
     private void ShootGun()
     {
         if (muzzleFlashPrefab)
         {
             // Create the muzzle flash
-            GameObject tempFlash  = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+            GameObject tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
             // Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
@@ -85,22 +78,21 @@ public class Shoot : MonoBehaviour
         // Cancels if there's no bullet prefeb
         if (!bulletPrefab)
         { return; }
-        
+
         // Calls animation on the gun that has the relevant animation events that will fire
         if (gunAnimator != null)
         { gunAnimator.SetTrigger("Fire"); }
-        
+
         // Create a bullet and add force on it in direction of the barrel
-        Rigidbody bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>();
-        bullet.velocity = transform.TransformDirection(Vector3.forward) * shotPower;
-        
+        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+
         // Create a casing at the ejection slot
-        //CasingRelease();
-        
+        CasingRelease();
+
         // Fire event to play shooting audio
         gunShot.Publish();
     }
-    
+
     // This function creates a casing at the ejection slot
     void CasingRelease()
     {
@@ -132,17 +124,5 @@ public class Shoot : MonoBehaviour
             _cooledDown = true;
             _currentCoolDown = 0;
         }
-    }
-
-    private void EquipGun()
-    {
-        _gunEnabled = true;
-        gunObject.SetActive(true);
-    }
-    
-    private void UnequipGun()
-    {
-        _gunEnabled = false;
-        gunObject.SetActive(false);
     }
 }

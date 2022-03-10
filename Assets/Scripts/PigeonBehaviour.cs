@@ -28,6 +28,7 @@ public class PigeonBehaviour : MonoBehaviour
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
             pointScored.Publish();
+            Debug.Log("Hit bullet");
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Floor"))

@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.189306
+      value: 0.6921
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.093
+      value: 0.213
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -220,9 +220,10 @@ GameObject:
   m_Component:
   - component: {fileID: 230481668}
   - component: {fileID: 230481667}
+  - component: {fileID: 230481669}
   m_Layer: 6
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +239,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -250,15 +251,41 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230481666}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.038288333, y: 0.042010464, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.061, y: 0.016, z: 0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2088261326}
   - {fileID: 866116153}
   m_Father: {fileID: 1306651684}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &230481669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230481666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0170ff8f7824cc84dbdae2364166377c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunShot: {fileID: 11400000, guid: 34fb9cabad0ef104f80eaa3f1fe626b6, type: 2}
+  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
+  casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
+  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
+  gunObject: {fileID: 230481666}
+  gunAnimator: {fileID: 2088261328}
+  barrelLocation: {fileID: 2088261327}
+  casingExitLocation: {fileID: 1255134809}
+  triggerButton: RHTrigger
+  destroyTimer: 2
+  shotPower: 500
+  ejectPower: 150
+  coolDownInSeconds: 5
+  canShoot: 0
 --- !u!1 &334260244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,11 +1488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.20270567
+      value: -0.819
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.093
+      value: 0.211
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1651,7 +1678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1231754916
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,15 +2173,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306947652}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.1, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 230481668}
   - {fileID: 2121007168}
+  - {fileID: 230481668}
   m_Father: {fileID: 2140859547}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!4 &1306651686
 Transform:
   m_ObjectHideFlags: 0
@@ -2749,7 +2776,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306947652}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 213e1a3362eb8ad49b5160625a60e8a1, type: 3}
   m_Name: 
@@ -2788,7 +2815,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   buttonName: RHGrab
-  grabRadius: 2
+  grabRadius: 0.5
+  shootingGun: {fileID: 230481669}
 --- !u!114 &1307047575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3067,19 +3095,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3091,7 +3119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400054, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
       propertyPath: m_Controller
@@ -3143,6 +3171,7 @@ MonoBehaviour:
     m_Bits: 64
   buttonName: LHGrab
   grabRadius: 2
+  shootingGun: {fileID: 230481669}
 --- !u!114 &1425508002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,7 +3620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909165142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.185, z: -1.099}
+  m_LocalPosition: {x: 0, y: -0.1, z: -1.099}
   m_LocalScale: {x: 4.8820076, y: 0.5, z: 1.1752}
   m_Children: []
   m_Father: {fileID: 585721043}
@@ -3906,7 +3935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763809825007691001, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.013
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7763809825007691001, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3995,7 +4024,7 @@ Transform:
   - {fileID: 1306651680}
   - {fileID: 1306651682}
   m_Father: {fileID: 1306651684}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140859546
 GameObject:
