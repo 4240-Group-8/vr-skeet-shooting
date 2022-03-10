@@ -3,8 +3,6 @@ using UnityEngine;
 /// To be placed on the collider child of the hoop prefab.
 /// Makes hoops slow time for the player and change to green.
 /// When the pigeon touches the ground, the hoop is destroyed also.
-///
-/// TODO: Bad OOP, but the only way I can think of now is to put all this behaviour on the pigeon
 /// </summary>
 public class HoopBehaviour : MonoBehaviour
 {

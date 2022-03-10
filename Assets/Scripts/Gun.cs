@@ -48,7 +48,7 @@ public class Gun : MonoBehaviour
     
     void Start()
     {
-        gunAnimator = GetComponent<Animator>();
+        gunAnimator = GetComponentInChildren<Animator>();
         _cooledDown = true;
         // HasAmmo = true;
         // _ammo = ammoCapacity;
