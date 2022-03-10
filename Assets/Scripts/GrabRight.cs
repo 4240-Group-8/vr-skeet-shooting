@@ -1,46 +1,49 @@
 using UnityEngine;
 
 /// <summary>
-/// Lets the player grab objects around them. Attached to the L and R hands.
-/// <author>ian-from-dover</author>
+/// Lets the player grab the gun using the right controller.
+/// <author>ian-from-dover, syasyazman, nijnxw</author>
 /// feel free to add your authorship here
 /// </summary>
-public class Grab : MonoBehaviour
+public class GrabRight : MonoBehaviour
 {
-    public EventChannel pigeonPickup;
     public EventChannel gunEquipped;
-    public OVRInput.Controller Controller; // placed on L and R
+    public OVRInput.Controller Controller;
     public LayerMask grabMask; // only obj in this layer can be grabbed
-    public string buttonName;
+    public string buttonName = "RHGrab";
     public float grabRadius = 1; // range of sphere cast
     public Gun shootingGun;
 
     private GameObject _grabbedObject;
     private bool _grabbing;
     
-
     void Update()
     {
         if (!_grabbing && Input.GetAxis(buttonName) == 1)
         {
-            GrabObject();
+            GrabGun();
         }
 
         if (_grabbing && Input.GetAxis(buttonName) < 1)
         {
-            DropObject();
+            DropGun();
         }
     }
 
-    void GrabObject()
+    void GrabGun()
     {
-        // Check current hand side of controller
-        // Left hand : grab pigeon and ammo only
-        // Right hand : grab gun only
-        OVRPlugin.Handedness handedness = OVRPlugin.GetDominantHand();
-
         _grabbing = true;
 
+        // Just grab gun regardless of distance
+        shootingGun.canShoot = true;
+        _grabbedObject = shootingGun.gameObject;
+        _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
+        _grabbedObject.transform.position = transform.position;
+        _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
+
+        // TODO: snap gun to position
+
+        /*
         RaycastHit[] hits;
 
         // only react for objects in the correct layers
@@ -65,32 +68,28 @@ public class Grab : MonoBehaviour
 
             _grabbedObject = hits[closestHit].transform.gameObject;
 
-            if (_grabbedObject.tag == "Gun")
+            if (_grabbedObject.tag != "Gun")
             {
-                shootingGun.canShoot = true;
+                return;
             }
-            //else if (!((_grabbedObject.tag == "Pigeon" || _grabbedObject.tag == "Magazine") && OVRInput.GetActiveController() == OVRInput.Controller.LTouch))
-            //{
-            //   return; // not a valid grab
-            //}
 
+            shootingGun.canShoot = true;
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
-            //pigeonPickup.Publish();
+            
+            // TODO: snap gun to position
         }
+        */
     }
 
-    void DropObject()
+    void DropGun()
     {
         _grabbing = false;
 
         if (_grabbedObject != null)
         {
-            if (_grabbedObject.tag == "Gun")
-            {
-                shootingGun.canShoot = false;
-            }
+            shootingGun.canShoot = false;
 
             _grabbedObject.transform.parent = null; // makes obj child of ctrler so they move tgt
 
@@ -99,8 +98,7 @@ public class Grab : MonoBehaviour
             _grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(Controller); 
             _grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
 
-            _grabbedObject = null; // makes obj child of ctrler so they move tgt
-            //gunEquipped.Publish();
+            _grabbedObject = null;
         }
     }
 }

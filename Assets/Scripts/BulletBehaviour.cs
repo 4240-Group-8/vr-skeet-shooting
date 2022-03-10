@@ -18,7 +18,7 @@ public class BulletBehaviour : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Gun"))
+        if (collision.gameObject.CompareTag("Gun") || collision.gameObject.CompareTag("Magazine"))
         { return; }
         // PigeonBehaviour.cs handles smoke instantiation upon collision
         // Collision with environment, do nothing

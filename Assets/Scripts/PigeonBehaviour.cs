@@ -27,16 +27,16 @@ public class PigeonBehaviour : MonoBehaviour
         {
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
-            pointScored.Publish();
             Debug.Log("Hit bullet");
             Destroy(gameObject);
+            // pointScored.Publish();
         }
         else if (collision.gameObject.CompareTag("Floor"))
         {
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
-            pointScored.Publish(); // change to PointNotScored when bullets are implemented
             Destroy(gameObject);
+            // pointScored.Publish(); // change to PointNotScored when bullets are implemented
         }
         else
         {
