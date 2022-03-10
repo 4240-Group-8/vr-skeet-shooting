@@ -425,8 +425,8 @@ MonoBehaviour:
   destroyTimer: 2
   shotPower: 500
   ejectPower: 150
-  coolDownInSeconds: 5
   canShoot: 0
+  coolDownInSeconds: 5
   magazinePosition: {fileID: 2088261329}
 --- !u!1001 &255466823
 PrefabInstance:
@@ -893,7 +893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &603938921
 Transform:
   m_ObjectHideFlags: 0

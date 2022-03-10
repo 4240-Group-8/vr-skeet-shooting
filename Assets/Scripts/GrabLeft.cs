@@ -63,7 +63,7 @@ public class GrabLeft : MonoBehaviour
             {
                 return;
             }
-
+            Debug.Log("Grab object: " + _grabbedObject.tag);
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt

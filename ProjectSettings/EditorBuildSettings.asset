@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WJShootScene.unity
     guid: bcad95c74bb25a047a595c8d6fed6dd8
+  - enabled: 1
+    path: Assets/Scenes/IanAudioScene.unity
+    guid: 39427e5288b7ada4d921953747165f6d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a80bd58080219ae41b7d0fc3f62a3cec, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 94cf1821b92fd524cb95b44a4af05b84, type: 2}
