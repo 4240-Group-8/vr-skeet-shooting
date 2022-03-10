@@ -50,10 +50,9 @@ public class Gun : MonoBehaviour
     {
         gunAnimator = GetComponent<Animator>();
         _cooledDown = true;
-        HasAmmo = true;
-        _ammo = ammoCapacity;
+        // HasAmmo = true;
+        // _ammo = ammoCapacity;
     }
-
 
     void Update()
     {
@@ -67,7 +66,8 @@ public class Gun : MonoBehaviour
             HasAmmo = false;
         }
 
-        if (_cooledDown && canShoot && HasAmmo)
+
+        if (_cooledDown && canShoot) // && _HasAmmo)
         {
             if (Input.GetAxis(triggerButton) == 1)
             {
@@ -191,5 +191,4 @@ public class Gun : MonoBehaviour
             }
         }
     }
-
 }

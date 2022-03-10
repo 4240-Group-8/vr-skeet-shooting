@@ -10,7 +10,7 @@ public class BulletBehaviour : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Gun"))
+        if (collision.gameObject.CompareTag("Gun") || collision.gameObject.CompareTag("Magazine"))
         { return; }
         
         // Collision with environment, instantiate the bullet impact
