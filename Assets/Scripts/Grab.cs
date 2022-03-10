@@ -34,6 +34,11 @@ public class Grab : MonoBehaviour
 
     void GrabObject()
     {
+        // Check current hand side of controller
+        // Left hand : grab pigeon and ammo only
+        // Right hand : grab gun only
+        OVRPlugin.Handedness handedness = OVRPlugin.GetDominantHand();
+
         _grabbing = true;
 
         RaycastHit[] hits;
@@ -59,10 +64,14 @@ public class Grab : MonoBehaviour
             }
 
             _grabbedObject = hits[closestHit].transform.gameObject;
-            
-            if (_grabbedObject.tag == "Gun")
+
+            if (_grabbedObject.tag == "Gun" && OVRInput.GetActiveController() == OVRInput.Controller.RTouch)
             {
                 shootingGun.canShoot = true;
+            }
+            else if (!((_grabbedObject.tag == "Pigeon" || _grabbedObject.tag == "Magazine") && OVRInput.GetActiveController() == OVRInput.Controller.LTouch))
+            {
+                return; // not a valid grab
             }
 
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held

@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Gun
   - Pigeon
+  - Magazine
   layers:
   - Default
   - TransparentFX

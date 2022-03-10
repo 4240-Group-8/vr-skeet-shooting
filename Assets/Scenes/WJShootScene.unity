@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -475,8 +475,73 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &425762759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_Name
+      value: M1911 Magazine
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_TagString
+      value: Magazine
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.247
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2718318
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
 --- !u!1 &498110415
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +618,7 @@ Transform:
   - {fileID: 2082323103}
   - {fileID: 1909165143}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &613384475
 GameObject:
@@ -690,8 +755,69 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &787608221
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_Name
+      value: M1911 Magazine (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.329
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.483
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40ea87bfb6dc64349a6b3363f1955b6a, type: 3}
 --- !u!1 &803568352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,7 +1599,7 @@ Transform:
   m_LocalScale: {x: 2.2423, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1074360743
 PrefabInstance:
@@ -1484,7 +1610,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3503941745115423046, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1697,7 +1823,7 @@ Transform:
   - {fileID: 1521485702}
   - {fileID: 1837302619}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1255134809 stripped
 Transform:
@@ -2815,7 +2941,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   buttonName: RHGrab
-  grabRadius: 0.5
+  grabRadius: 1
   shootingGun: {fileID: 230481669}
 --- !u!114 &1307047575
 MonoBehaviour:
@@ -3158,7 +3284,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1425507999}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 734c4678f454d1546a69fd72b80302c4, type: 3}
   m_Name: 
@@ -3170,7 +3296,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   buttonName: LHGrab
-  grabRadius: 2
+  grabRadius: 1
   shootingGun: {fileID: 230481669}
 --- !u!114 &1425508002
 MonoBehaviour:
@@ -3607,7 +3733,7 @@ GameObject:
   - component: {fileID: 1909165144}
   m_Layer: 0
   m_Name: Table
-  m_TagString: Untagged
+  m_TagString: Magazine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
