@@ -1,0 +1,104 @@
+using UnityEngine;
+
+/// <summary>
+/// Lets the player grab the gun using the right controller.
+/// <author>ian-from-dover, syasyazman, nijnxw</author>
+/// feel free to add your authorship here
+/// </summary>
+public class GrabRight : MonoBehaviour
+{
+    public EventChannel gunEquipped;
+    public OVRInput.Controller Controller;
+    public LayerMask grabMask; // only obj in this layer can be grabbed
+    public string buttonName = "RHGrab";
+    public float grabRadius = 1; // range of sphere cast
+    public Gun shootingGun;
+
+    private GameObject _grabbedObject;
+    private bool _grabbing;
+    
+    void Update()
+    {
+        if (!_grabbing && Input.GetAxis(buttonName) == 1)
+        {
+            GrabGun();
+        }
+
+        if (_grabbing && Input.GetAxis(buttonName) < 1)
+        {
+            DropGun();
+        }
+    }
+
+    void GrabGun()
+    {
+        _grabbing = true;
+
+        // Just grab gun regardless of distance
+        shootingGun.canShoot = true;
+        _grabbedObject = shootingGun.gameObject;
+        _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
+        _grabbedObject.transform.position = transform.position;
+        _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
+
+        // TODO: snap gun to position
+
+        /*
+        RaycastHit[] hits;
+
+        // only react for objects in the correct layers
+        hits = Physics.SphereCastAll(transform.position, grabRadius, transform.forward, 0.0f, grabMask);
+    
+        if (hits.Length > 0)
+        {
+            int closestHit = 0;
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                // can't figure out why grabbing nearest object is buggy
+                // if (hits[i].collider != null) Debug.Log(hits[i].collider.name + " has been hit. Its distance is: " + hits[i].distance);
+
+                if ((hits[i]).distance < hits[closestHit].distance)
+                {
+                    closestHit = i;
+                    Debug.Log(hits[i].collider.name + " has been selected. Its distance is: " + hits[i].distance);
+
+                }
+            }
+
+            _grabbedObject = hits[closestHit].transform.gameObject;
+
+            if (_grabbedObject.tag != "Gun")
+            {
+                return;
+            }
+
+            shootingGun.canShoot = true;
+            _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
+            _grabbedObject.transform.position = transform.position;
+            _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
+            
+            // TODO: snap gun to position
+        }
+        */
+    }
+
+    void DropGun()
+    {
+        _grabbing = false;
+
+        if (_grabbedObject != null)
+        {
+            shootingGun.canShoot = false;
+
+            _grabbedObject.transform.parent = null; // makes obj child of ctrler so they move tgt
+
+            _grabbedObject.GetComponent<Rigidbody>().isKinematic = false; // gravity dont work on obj while it is held
+
+            _grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(Controller); 
+            _grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
+
+            _grabbedObject = null;
+        }
+    }
+}
