@@ -62,6 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadGunEvent: {fileID: 11400000, guid: f7c702912521f0b42abcb2bb55663a05, type: 2}
+  reloadGunAudioEvent: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
+  reloadMagCollider: {fileID: 0}
 --- !u!1001 &9012054204018609078
 PrefabInstance:
   m_ObjectHideFlags: 0
