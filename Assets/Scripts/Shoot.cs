@@ -10,22 +10,25 @@ public class Shoot : MonoBehaviour
     public EventChannel gunEquipped;
     public EventChannel gunUnequipped;
     public EventChannel gunShot;
-    public string triggerButton = "RHTrigger";
 
     [Header("Prefab References")]
-    public GameObject gunPrefab;
     public GameObject bulletPrefab;
+    public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
     
-    [Header("Location References")]
+    [Header("References")]
+    [SerializeField] private GameObject gunObject;
+    [SerializeField] private Animator gunAnimator;
     [SerializeField] private Transform barrelLocation;
+    [SerializeField] private Transform casingExitLocation;
     
     [Header("Settings")]
+    [Tooltip("Controller axis that triggers the shot")] [SerializeField] private string triggerButton = "RHTrigger";
     [Tooltip("Specify time to destroy the casing object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
     
-    private bool _gunEnabled = false;
+    private bool _gunEnabled;
     private bool _cooledDown = true;
     public float coolDownInSeconds;
     private float _currentCoolDown = 0.0f; // 0 is cooled down.
@@ -34,6 +37,10 @@ public class Shoot : MonoBehaviour
         // subscribes the methods to these events. it will activate when the event happens
         gunEquipped.OnChange += EquipGun;
         gunUnequipped.OnChange += UnequipGun;
+
+        // TODO: set _gunEnabled to false after working on shooting
+        _gunEnabled = true;
+        _cooledDown = true;
     }
 
     private void OnDestroy()
@@ -71,7 +78,7 @@ public class Shoot : MonoBehaviour
             // Create the muzzle flash
             GameObject tempFlash  = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
 
-            //Destroy the muzzle flash effect
+            // Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
         }
 
@@ -79,10 +86,38 @@ public class Shoot : MonoBehaviour
         if (!bulletPrefab)
         { return; }
         
+        // Calls animation on the gun that has the relevant animation events that will fire
+        if (gunAnimator != null)
+        { gunAnimator.SetTrigger("Fire"); }
+        
         // Create a bullet and add force on it in direction of the barrel
-        Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation)
-            .GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
+        Rigidbody bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation).GetComponent<Rigidbody>();
+        bullet.velocity = transform.TransformDirection(Vector3.forward) * shotPower;
+        
+        // Create a casing at the ejection slot
+        CasingRelease();
+        
+        // Fire event to play shooting audio
         gunShot.Publish();
+    }
+    
+    // This function creates a casing at the ejection slot
+    void CasingRelease()
+    {
+        // Cancels function if ejection slot hasn't been set or there's no casing
+        if (!casingExitLocation || !casingPrefab)
+        { return; }
+
+        // Create the casing
+        GameObject tempCasing;
+        tempCasing = Instantiate(casingPrefab, casingExitLocation.position, casingExitLocation.rotation) as GameObject;
+        // Add force on casing to push it out
+        tempCasing.GetComponent<Rigidbody>().AddExplosionForce(Random.Range(ejectPower * 0.7f, ejectPower), (casingExitLocation.position - casingExitLocation.right * 0.3f - casingExitLocation.up * 0.6f), 1f);
+        // Add torque to make casing spin in random direction
+        tempCasing.GetComponent<Rigidbody>().AddTorque(new Vector3(0, Random.Range(100f, 500f), Random.Range(100f, 1000f)), ForceMode.Impulse);
+
+        // Destroy casing after X seconds
+        Destroy(tempCasing, destroyTimer);
     }
 
     // Updates gun cooldown
@@ -102,12 +137,12 @@ public class Shoot : MonoBehaviour
     private void EquipGun()
     {
         _gunEnabled = true;
-        gunPrefab.SetActive(true);
+        gunObject.SetActive(true);
     }
     
     private void UnequipGun()
     {
         _gunEnabled = false;
-        gunPrefab.SetActive(false);
+        gunObject.SetActive(false);
     }
 }

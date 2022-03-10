@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &230481667
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -199,7 +199,6 @@ Transform:
   m_Children:
   - {fileID: 2088261326}
   - {fileID: 866116153}
-  - {fileID: 580189207}
   m_Father: {fileID: 1306651684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -438,36 +437,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &580189206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 580189207}
-  m_Layer: 6
-  m_Name: Barrel Location
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &580189207
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580189206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0126, y: 0.0989, z: 0.1868}
-  m_LocalScale: {x: 0.019623026, y: 0.019623026, z: 0.019623026}
-  m_Children: []
-  m_Father: {fileID: 230481668}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &585721042
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +650,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803568352}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -1238,7 +1207,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956240500}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -1464,7 +1433,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082893388}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -1589,6 +1558,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1255134809 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7755600678099376631, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
+  m_PrefabInstance: {fileID: 2088261325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1264462473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,11 +2643,14 @@ MonoBehaviour:
   gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
   gunUnequipped: {fileID: 11400000, guid: c472aaf3694105e43a21e4185ccdcae0, type: 2}
   gunShot: {fileID: 11400000, guid: 34fb9cabad0ef104f80eaa3f1fe626b6, type: 2}
-  triggerButton: RHTrigger
-  gunPrefab: {fileID: 230481666}
-  bulletPrefab: {fileID: 1122964723992546, guid: 674adf642abf5614aae2995443c8250f, type: 3}
+  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
+  casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  barrelLocation: {fileID: 580189207}
+  gunObject: {fileID: 230481666}
+  gunAnimator: {fileID: 2088261328}
+  barrelLocation: {fileID: 2088261327}
+  casingExitLocation: {fileID: 1255134809}
+  triggerButton: RHTrigger
   destroyTimer: 2
   shotPower: 500
   ejectPower: 150
@@ -2692,7 +2669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pigeonPickup: {fileID: 11400000, guid: fa98f3e8981460f44b413c5a1463d3f9, type: 2}
   gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
-  Controller: 0
+  Controller: 2
   grabMask:
     serializedVersion: 2
     m_Bits: 64
@@ -3122,7 +3099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462697033}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -3253,7 +3230,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521485701}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -3384,7 +3361,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837302618}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d1a7708e76601b4ea829921c33bc624, type: 3}
   m_Name: 
@@ -3500,8 +3477,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909165142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.59}
-  m_LocalScale: {x: 2.7126784, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -0.185, z: -1.099}
+  m_LocalScale: {x: 4.8820076, y: 0.5, z: 1.1752}
   m_Children: []
   m_Father: {fileID: 585721043}
   m_RootOrder: 3
@@ -3862,6 +3839,16 @@ PrefabInstance:
 --- !u!4 &2088261326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7763809825007691001, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
+  m_PrefabInstance: {fileID: 2088261325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2088261327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7755289229545171715, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
+  m_PrefabInstance: {fileID: 2088261325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2088261328 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8309115824573975323, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
   m_PrefabInstance: {fileID: 2088261325}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2121007167
