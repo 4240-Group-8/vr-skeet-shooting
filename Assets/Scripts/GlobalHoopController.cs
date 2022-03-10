@@ -11,7 +11,6 @@ public class GlobalHoopController : MonoBehaviour
     void Start()
     {
         hoops = new List<GameObject>(GameObject.FindGameObjectsWithTag("Hoop"));
-        hoops.ForEach(h => Debug.Log(h));
         timerUiStarted.OnChange += EnableAllHoops;
         timerUiStopped.OnChange += DisableAllHoops;
         timerUiReset.OnChange += DisableAllHoops;

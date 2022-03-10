@@ -2594,6 +2594,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7502729277336137194, guid: b31f99aa7dee1864d86aa0f2f5f23e62, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9bd000dfbaefd1409d36fbaa584718e, type: 2}
     - target: {fileID: 7502729277338137386, guid: b31f99aa7dee1864d86aa0f2f5f23e62, type: 3}
       propertyPath: m_Name
       value: Hoop (2)
@@ -3507,9 +3511,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointScored: {fileID: 11400000, guid: efd1c833e2b36234aa02eed621039d62, type: 2}
-  startTimer: {fileID: 11400000, guid: 7dc1449bdd805f44d8748ca5748cabba, type: 2}
   stopTimer: {fileID: 11400000, guid: e3ac8f00caefa7449977e3de024d7cbe, type: 2}
   resetTimer: {fileID: 11400000, guid: 4f412b772ecb457469dd2ba77da30aa1, type: 2}
+  timeSlowed: {fileID: 11400000, guid: 4c82f4f23cf9e204ba54bf67aa4cb737, type: 2}
+  gunUnequipped: {fileID: 11400000, guid: c472aaf3694105e43a21e4185ccdcae0, type: 2}
   scoreCounter: {fileID: 1132209696}
   leaderboardVal: {fileID: 1621482666}
   score: 0

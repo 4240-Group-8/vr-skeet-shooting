@@ -49,9 +49,11 @@ public class HoopBehaviour : MonoBehaviour
     public void ClearHoop()
     {
         // problem: every hoop will make 1 smoke object at parenthoop there
+        // only solution now: dont have smoke particles when parent has been destroyed
         
-        // problem 2: pigeon hits the ground but has never gone through hoops before.
-        // got no parentHoop, breaks script
+        // todo: event order got problem, fix after dinner for score counting
+        // diagnosis: gunUnequip is turning countscore to false before addpoint can add the point.
+        // solution: this problem wont exist once (only bullets) add score.
         if (parentHoop != null)
         {
             Instantiate(smoke, parentHoop.transform.position, parentHoop.transform.rotation);

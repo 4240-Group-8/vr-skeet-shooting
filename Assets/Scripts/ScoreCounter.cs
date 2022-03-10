@@ -3,9 +3,10 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public EventChannel pointScored;
-    public EventChannel startTimer;
     public EventChannel stopTimer;
     public EventChannel resetTimer;
+    public EventChannel timeSlowed; // pigeon enters hoop
+    public EventChannel gunUnequipped; // pigeon hits ground
     public Text scoreCounter;
     public Text leaderboardVal;
     public int score = 0;
@@ -17,21 +18,19 @@ public class ScoreCounter : MonoBehaviour
         scoreCounter.text = ZERO;
         leaderboardVal.text = ZERO;
         pointScored.OnChange += AddPoint;
-        startTimer.OnChange += StartCountingScore;
+        timeSlowed.OnChange += StartCountingScore; // when pigeon enters ring
         stopTimer.OnChange += SaveScore;
-        stopTimer.OnChange += StopCountingScore;
         resetTimer.OnChange += ResetScore;
-        resetTimer.OnChange += StopCountingScore;
+        gunUnequipped.OnChange += StopCountingScore;
     }
 
     private void OnDestroy()
     {
         pointScored.OnChange -= AddPoint;
-        startTimer.OnChange -= StartCountingScore;
+        timeSlowed.OnChange -= StartCountingScore;
         stopTimer.OnChange -= SaveScore;
-        stopTimer.OnChange -= StopCountingScore;
         resetTimer.OnChange -= ResetScore;
-        resetTimer.OnChange -= StopCountingScore;
+        gunUnequipped.OnChange -= StopCountingScore;
     }
 
     public void StartCountingScore()

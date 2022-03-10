@@ -128,9 +128,9 @@ public class AudioEventManager : MonoBehaviour
         pointScored.OnChange += CrowdNormalLoop;
         pointScored.OnChange += CrowdCheer;
         pointScored.OnChange += PigeonDestroyed;
+        pointNotScored.OnChange += PigeonDestroyed;
         pointNotScored.OnChange += CrowdNormalLoop;
         pointNotScored.OnChange += CrowdSad;
-        pointNotScored.OnChange += PigeonDestroyed;
         gunEquipped.OnChange += EquipGun;
         gunShot.OnChange += ShootGun;
         playerTeleported.OnChange += Teleport;
@@ -150,11 +150,11 @@ public class AudioEventManager : MonoBehaviour
         // unsubscribe event channels to prevent resource leak
         pigeonPickedUp.OnChange -= CrowdExcitedLoop;
         pointScored.OnChange -= CrowdNormalLoop;
-        pointScored.OnChange -= PigeonDestroyed;
         pointScored.OnChange -= CrowdCheer;
+        pointScored.OnChange -= PigeonDestroyed;
+        pointNotScored.OnChange -= PigeonDestroyed;
         pointNotScored.OnChange -= CrowdNormalLoop;
         pointNotScored.OnChange -= CrowdSad;
-        pointNotScored.OnChange -= PigeonDestroyed;
         gunEquipped.OnChange -= EquipGun;
         gunShot.OnChange -= ShootGun;
         playerTeleported.OnChange -= Teleport;
