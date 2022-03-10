@@ -406,11 +406,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunShotAudioEvent: {fileID: 11400000, guid: 34fb9cabad0ef104f80eaa3f1fe626b6, type: 2}
-  reloadGunEvent: {fileID: 11400000, guid: f7c702912521f0b42abcb2bb55663a05, type: 2}
+  reloadGunAudioEvent: {fileID: 0}
   bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
   casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  gunObject: {fileID: 230481666}
   gunAnimator: {fileID: 2088261328}
   barrelLocation: {fileID: 2088261327}
   casingExitLocation: {fileID: 1255134809}
@@ -420,6 +419,7 @@ MonoBehaviour:
   ejectPower: 150
   coolDownInSeconds: 5
   canShoot: 0
+  magazinePosition: {fileID: 2088261329}
 --- !u!1001 &255466823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3516,6 +3516,11 @@ Transform:
 --- !u!95 &2088261328 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8309115824573975323, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
+  m_PrefabInstance: {fileID: 2088261325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2088261329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4606408731648075936, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
   m_PrefabInstance: {fileID: 2088261325}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2121007167

@@ -168,3 +168,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c745a19c6ce83459ff3c9a8692fcd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletImpactPrefab: {fileID: 4664917702160071019, guid: 3d976e9a7a6f08549aee750c630880d4, type: 3}
+  bulletHoleTimer: 2
