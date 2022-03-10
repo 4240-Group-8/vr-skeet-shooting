@@ -41,25 +41,25 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
-        reloadGunEvent.OnChange += Reload;
+        // reloadGunEvent.OnChange += Reload;
         _cooledDown = true;
         _hasAmmo = true;
-        _ammo = ammoCapacity;
+        // _ammo = ammoCapacity;
     }
 
     private void OnDestroy()
     {
-        reloadGunEvent.OnChange -= Reload;
+        // reloadGunEvent.OnChange -= Reload;
     }
 
     void Update()
     {
         if (_ammo <= 0)
         {
-            _hasAmmo = false;
+            // _hasAmmo = false;
         }
 
-        if (_cooledDown && canShoot && _hasAmmo)
+        if (_cooledDown && canShoot) // && _hasAmmo)
         {
             if (Input.GetAxis(triggerButton) == 1)
             {
@@ -103,7 +103,7 @@ public class Gun : MonoBehaviour
             .GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
 
         // Decrease the ammo count after shooting a bullet
-        _ammo--;
+        // _ammo--;
         
         // Create a casing at the ejection slot
         CasingRelease();
@@ -144,9 +144,11 @@ public class Gun : MonoBehaviour
         }
     }
 
+    /*
     private void Reload()
     {
         _ammo = ammoCapacity;
         _hasAmmo = true;
     }
+    */
 }
