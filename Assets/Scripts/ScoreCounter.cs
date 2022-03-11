@@ -3,10 +3,9 @@ using UnityEngine.UI;
 public class ScoreCounter : MonoBehaviour
 {
     public EventChannel pointScored;
+    public EventChannel startTimer;
     public EventChannel stopTimer;
     public EventChannel resetTimer;
-    public EventChannel timeSlowed; // pigeon enters hoop
-    public EventChannel gunUnequipped; // pigeon hits ground
     public Text scoreCounter;
     public Text leaderboardVal;
     public int score = 0;
@@ -18,19 +17,21 @@ public class ScoreCounter : MonoBehaviour
         scoreCounter.text = ZERO;
         leaderboardVal.text = ZERO;
         pointScored.OnChange += AddPoint;
-        timeSlowed.OnChange += StartCountingScore; // when pigeon enters ring
+        startTimer.OnChange += StartCountingScore;
         stopTimer.OnChange += SaveScore;
+        stopTimer.OnChange += StopCountingScore;
         resetTimer.OnChange += ResetScore;
-        gunUnequipped.OnChange += StopCountingScore;
+        resetTimer.OnChange += StopCountingScore;
     }
 
     private void OnDestroy()
     {
         pointScored.OnChange -= AddPoint;
-        timeSlowed.OnChange -= StartCountingScore;
+        startTimer.OnChange -= StartCountingScore;
         stopTimer.OnChange -= SaveScore;
+        stopTimer.OnChange -= StopCountingScore;
         resetTimer.OnChange -= ResetScore;
-        gunUnequipped.OnChange -= StopCountingScore;
+        resetTimer.OnChange -= StopCountingScore;
     }
 
     public void StartCountingScore()
@@ -41,7 +42,6 @@ public class ScoreCounter : MonoBehaviour
     /// <summary>
     /// Disables the counting of score.
     /// Does not count score when timer is not running.
-    /// Or when the pigeon has not entered the hoop.
     /// </summary>
     public void StopCountingScore()
     {
@@ -54,7 +54,6 @@ public class ScoreCounter : MonoBehaviour
         {
             score++;
             scoreCounter.text = score + "";
-            gunUnequipped.Publish();
         }
     }
     /// <summary>

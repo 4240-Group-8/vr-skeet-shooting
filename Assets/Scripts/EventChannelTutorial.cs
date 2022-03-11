@@ -19,7 +19,7 @@ public class EventChannelTutorial : MonoBehaviour
     void OnDestroy()
     {
         // unsubscribe event channels to prevent resource leak
-        playerTeleported.OnChange -= PlaySound;
+        playerTeleported.OnChange += PlaySound;
     }
 
     // this method will be called when the event happens
