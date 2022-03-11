@@ -26,6 +26,8 @@ Koh Zheng Qiang Shawn
 Create skeet discs, throw them through the hoops, and shoot them before they hit the ground! 
 Make the hoops appear by starting the timer. Time slows down when a disc goes through the hoop, and resumes when it is destroyed.
 You have 30s to score as many points as possible. Try to beat your high score. The crowd is watching you!
+The right hand can only grab the gun, and will grab it regardless of how far it is.
+The left hand can only grab discs.
 
 ### Controls
 ![Controls](Controls.png)
@@ -47,6 +49,7 @@ trigger: Shoot, bottom round button: Start and Reset timer, side button: Grab gu
 - Oculus Integration by Oculus
 - Modern Guns: Handgun by Nokobot
 - sFuture Targeting by Sami Lehtonen
+- waiting for Chen Kun to the assets he used to maket he level into here.
 
 ## Sounds Used
 _The following royalty-free sounds were downloaded from their respective websites and belong tot their respective owners:_

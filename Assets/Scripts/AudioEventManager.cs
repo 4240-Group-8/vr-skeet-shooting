@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class AudioEventManager : MonoBehaviour
 {
-    // Event Channels in the order that they happen
+    [Header("Event Channels")] // in the order that they happen
     public EventChannel playerTeleported;
     public EventChannel timeSlowed;
     public EventChannel timeResumed;
@@ -22,12 +22,13 @@ public class AudioEventManager : MonoBehaviour
     public EventChannel timerReset;
     
     // s stands for (sound)
+    [Header("Objects that play sounds")]
     public GameObject playerCamera;
     private AudioSource _sTeleport; 
     private AudioSource _sTimeSlow; 
     private AudioSource _sTimeResume; 
     
-    public GameObject gunHand;
+    public GameObject gun;
     private AudioSource _sEquipGun; 
     private AudioSource _sShootGun; 
     
@@ -74,7 +75,7 @@ public class AudioEventManager : MonoBehaviour
         _sTimeSlow = playerSounds[1];
         _sTimeResume = playerSounds[2];
         
-        AudioSource[] gunSounds = gunHand.GetComponents<AudioSource>();
+        AudioSource[] gunSounds = gun.GetComponents<AudioSource>();
         _sShootGun = gunSounds[0];
         _sEquipGun = gunSounds[1];
         

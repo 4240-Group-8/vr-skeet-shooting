@@ -1,6 +1,7 @@
 using UnityEngine;
 
 /// <summary>
+/// DEPRECATED: ONLY FOR USE ON TESTING SCENE 'ianAudioScene' and 'samplescene'
 /// Lets the player grab objects around them. Attached to the L and R hands.
 /// <author>ian-from-dover</author>
 /// feel free to add your authorship here
@@ -69,15 +70,11 @@ public class Grab : MonoBehaviour
             {
                 shootingGun.canShoot = true;
             }
-            //else if (!((_grabbedObject.tag == "Pigeon" || _grabbedObject.tag == "Magazine") && OVRInput.GetActiveController() == OVRInput.Controller.LTouch))
-            //{
-            //   return; // not a valid grab
-            //}
 
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
-            //pigeonPickup.Publish();
+            pigeonPickup.Publish();
         }
     }
 
@@ -100,7 +97,7 @@ public class Grab : MonoBehaviour
             _grabbedObject.GetComponent<Rigidbody>().angularVelocity = OVRInput.GetLocalControllerAngularVelocity(Controller);
 
             _grabbedObject = null; // makes obj child of ctrler so they move tgt
-            //gunEquipped.Publish();
+            gunEquipped.Publish();
         }
     }
 }

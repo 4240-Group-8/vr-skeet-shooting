@@ -3,7 +3,6 @@ using UnityEngine;
 /// <summary>
 /// Lets the player grab pigeon and magazines using the left controller.
 /// <author>ian-from-dover, syasyazman, nijnxw</author>
-/// feel free to add your authorship here
 /// </summary>
 public class GrabLeft : MonoBehaviour
 {
@@ -59,7 +58,7 @@ public class GrabLeft : MonoBehaviour
 
             _grabbedObject = hits[closestHit].transform.gameObject;
 
-            if (_grabbedObject.tag == "Gun")
+            if (_grabbedObject.CompareTag("Gun"))
             {
                 return;
             }
@@ -67,7 +66,7 @@ public class GrabLeft : MonoBehaviour
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
-            //pigeonPickup.Publish();
+            pigeonPickup.Publish();
         }
     }
 

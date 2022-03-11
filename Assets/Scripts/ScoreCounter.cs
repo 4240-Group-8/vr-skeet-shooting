@@ -35,7 +35,6 @@ public class ScoreCounter : MonoBehaviour
 
     public void StartCountingScore()
     {
-        Debug.Log("score has started counting! timeslowed was triggerd");
         _isCountingScore = true;
     }
     
@@ -46,7 +45,6 @@ public class ScoreCounter : MonoBehaviour
     /// </summary>
     public void StopCountingScore()
     {
-        Debug.Log("STOPPED. gun unequip triggered");
         _isCountingScore = false;
     }
     

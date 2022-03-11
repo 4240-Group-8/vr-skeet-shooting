@@ -2627,8 +2627,6 @@ GameObject:
   - component: {fileID: 1299645426}
   - component: {fileID: 1307047576}
   - component: {fileID: 1307047577}
-  - component: {fileID: 1307047573}
-  - component: {fileID: 1307047574}
   - component: {fileID: 1306947653}
   m_Layer: 0
   m_Name: RH
@@ -2799,54 +2797,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1307047573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306947652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213e1a3362eb8ad49b5160625a60e8a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
-  gunUnequipped: {fileID: 11400000, guid: c472aaf3694105e43a21e4185ccdcae0, type: 2}
-  gunShot: {fileID: 11400000, guid: 34fb9cabad0ef104f80eaa3f1fe626b6, type: 2}
-  bulletPrefab: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
-  casingPrefab: {fileID: 4362657251999731927, guid: 4cb20e8abae957146a8b78e670d3fe74, type: 3}
-  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  gunObject: {fileID: 230481666}
-  gunAnimator: {fileID: 2088261328}
-  barrelLocation: {fileID: 2088261327}
-  casingExitLocation: {fileID: 1255134809}
-  triggerButton: RHTrigger
-  destroyTimer: 2
-  shotPower: 500
-  ejectPower: 150
-  coolDownInSeconds: 0.3
---- !u!114 &1307047574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306947652}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734c4678f454d1546a69fd72b80302c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pigeonPickup: {fileID: 11400000, guid: fa98f3e8981460f44b413c5a1463d3f9, type: 2}
-  gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
-  Controller: 2
-  grabMask:
-    serializedVersion: 2
-    m_Bits: 64
-  buttonName: RHGrab
-  grabRadius: 1
-  shootingGun: {fileID: 230481669}
 --- !u!82 &1307047576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3168,27 +3118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LH: {fileID: 223134374}
   pigeon: {fileID: 4317633587780533244, guid: 1e56685c6075b0c4aac5863916e0df08, type: 3}
---- !u!114 &1425508001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425507999}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734c4678f454d1546a69fd72b80302c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pigeonPickup: {fileID: 11400000, guid: fa98f3e8981460f44b413c5a1463d3f9, type: 2}
-  gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}
-  Controller: 1
-  grabMask:
-    serializedVersion: 2
-    m_Bits: 64
-  buttonName: LHGrab
-  grabRadius: 1
-  shootingGun: {fileID: 230481669}
 --- !u!114 &1425508002
 MonoBehaviour:
   m_ObjectHideFlags: 0

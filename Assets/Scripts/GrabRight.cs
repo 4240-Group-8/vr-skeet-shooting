@@ -3,11 +3,10 @@ using UnityEngine;
 /// <summary>
 /// Lets the player grab the gun using the right controller.
 /// <author>ian-from-dover, syasyazman, nijnxw</author>
-/// feel free to add your authorship here
 /// </summary>
 public class GrabRight : MonoBehaviour
 {
-    public EventChannel gunEquipped;
+    public EventChannel gunEquipped; // to play sound
     public OVRInput.Controller Controller;
     public string buttonName = "RHGrab";
     public Gun shootingGun;
@@ -40,6 +39,7 @@ public class GrabRight : MonoBehaviour
         _grabbedObject.transform.position = holdingPos.position;
         _grabbedObject.transform.rotation = holdingPos.rotation;
         _grabbedObject.transform.parent = holdingPos; // makes obj child of ctrler so they move tgt
+        gunEquipped.Publish();
     }
 
     void DropGun()
