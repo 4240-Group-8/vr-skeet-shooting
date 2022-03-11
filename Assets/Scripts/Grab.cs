@@ -58,11 +58,6 @@ public class Grab : MonoBehaviour
             }
 
             _grabbedObject = hits[closestHit].transform.gameObject;
-
-            if (_grabbedObject.tag == "Gun")
-            {
-                shootingGun.canShoot = true;
-            }
             _grabbedObject.GetComponent<Rigidbody>().isKinematic = true; // gravity dont work on obj while it is held
             _grabbedObject.transform.position = transform.position;
             _grabbedObject.transform.parent = transform; // makes obj child of ctrler so they move tgt
