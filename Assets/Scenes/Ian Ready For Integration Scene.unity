@@ -525,6 +525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231582665}
+  - component: {fileID: 231582666}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -549,6 +550,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231582666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231582664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a428bc9532689f5489beda62610621ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerTeleported: {fileID: 11400000, guid: 5ae3d9b661923f84aa304911a75ae6bd, type: 2}
 --- !u!1001 &270849608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -819,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6913ee7239d6bf44adbf867ce73d689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTeleported: {fileID: 11400000, guid: 1923e79057edc1041b177c7bcf6dddb0, type: 2}
+  playerTeleported: {fileID: 11400000, guid: 5ae3d9b661923f84aa304911a75ae6bd, type: 2}
   timeSlowed: {fileID: 11400000, guid: 4c82f4f23cf9e204ba54bf67aa4cb737, type: 2}
   timeResumed: {fileID: 11400000, guid: 6d1423bb74283344f9cc9037b4ff4026, type: 2}
   gunEquipped: {fileID: 11400000, guid: ba81d24787251194ebcb7c908970abe1, type: 2}

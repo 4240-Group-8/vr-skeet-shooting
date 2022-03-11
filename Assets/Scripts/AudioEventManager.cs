@@ -8,7 +8,7 @@ using UnityEngine;
 public class AudioEventManager : MonoBehaviour
 {
     [Header("Event Channels")] // in the order that they happen
-    public EventChannel playerTeleported;
+    public PlayerTeleportedSO playerTeleported;
     public EventChannel timeSlowed;
     public EventChannel timeResumed;
     public EventChannel gunEquipped;
@@ -20,7 +20,7 @@ public class AudioEventManager : MonoBehaviour
     public EventChannel timerStarted;
     public EventChannel timerStopped;
     public EventChannel timerReset;
-    
+
     // s stands for (sound)
     [Header("Objects that play sounds")]
     public GameObject playerCamera;
@@ -170,7 +170,7 @@ public class AudioEventManager : MonoBehaviour
         gunUnequipped.Publish();
     }
 
-    private void Teleport()
+    private void Teleport(Vector3 _)
     {
         _sTeleport.Play();
     }
