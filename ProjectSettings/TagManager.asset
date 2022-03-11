@@ -7,10 +7,6 @@ TagManager:
   - Floor
   - Sound Test
   - Bullet
-  - Pigeon
-  - Hoop
-  - Gun
-  - Magazine
   layers:
   - Default
   - TransparentFX
