@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 enum TeleportState
@@ -11,10 +9,10 @@ enum TeleportState
 
 public class Teleportable : MonoBehaviour
 {
-    public GameObject Player;
     public GameObject Indicator;
 
     public string InputIdentifier;
+    public PlayerTeleportedSO PlayerTeleported;
 
     private int _layerMask;
 
@@ -63,9 +61,9 @@ public class Teleportable : MonoBehaviour
 
     private void Teleport(Vector3 position)
     {
-        if (Player == null)
+        if (PlayerTeleported == null)
             return;
-        Player.transform.position = position;
+        PlayerTeleported.Publish(position);
     }
 
     private void UpdateIndicator()
