@@ -49,7 +49,10 @@ trigger: Shoot, bottom round button: Start and Reset timer, side button: Grab gu
 - Oculus Integration by Oculus
 - Modern Guns: Handgun by Nokobot
 - sFuture Targeting by Sami Lehtonen
-- waiting for Chen Kun to the assets he used to maket he level into here.
+- RPG/FPS Game Assets for PC/Mobile (Industrial Set v3.0) by Dmitrii Kutsenko
+- Sci-Fi Construction Kit (Modular) by Creepy Cat
+- Euro Arena Soccer Stadium (Euro 2020) by alplaleli
+
 
 ## Sounds Used
 _The following royalty-free sounds were downloaded from their respective websites and belong tot their respective owners:_
