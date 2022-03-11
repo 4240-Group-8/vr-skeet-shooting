@@ -127,7 +127,6 @@ public class AudioEventManager : MonoBehaviour
         pigeonPickedUp.OnChange += CrowdExcitedLoop;
         pointScored.OnChange += CrowdNormalLoop;
         pointScored.OnChange += CrowdCheer;
-        pointScored.OnChange += PigeonDestroyed;
         pointNotScored.OnChange += PigeonDestroyed;
         pointNotScored.OnChange += CrowdNormalLoop;
         pointNotScored.OnChange += CrowdSad;
@@ -151,7 +150,6 @@ public class AudioEventManager : MonoBehaviour
         pigeonPickedUp.OnChange -= CrowdExcitedLoop;
         pointScored.OnChange -= CrowdNormalLoop;
         pointScored.OnChange -= CrowdCheer;
-        pointScored.OnChange -= PigeonDestroyed;
         pointNotScored.OnChange -= PigeonDestroyed;
         pointNotScored.OnChange -= CrowdNormalLoop;
         pointNotScored.OnChange -= CrowdSad;

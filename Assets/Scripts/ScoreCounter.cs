@@ -35,15 +35,18 @@ public class ScoreCounter : MonoBehaviour
 
     public void StartCountingScore()
     {
+        Debug.Log("score has started counting! timeslowed was triggerd");
         _isCountingScore = true;
     }
     
     /// <summary>
     /// Disables the counting of score.
     /// Does not count score when timer is not running.
+    /// Or when the pigeon has not entered the hoop.
     /// </summary>
     public void StopCountingScore()
     {
+        Debug.Log("STOPPED. gun unequip triggered");
         _isCountingScore = false;
     }
     
@@ -53,6 +56,7 @@ public class ScoreCounter : MonoBehaviour
         {
             score++;
             scoreCounter.text = score + "";
+            gunUnequipped.Publish();
         }
     }
     /// <summary>

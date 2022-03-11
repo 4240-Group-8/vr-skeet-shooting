@@ -7,7 +7,7 @@ public class PigeonBehaviour : MonoBehaviour
 {
     public EventChannel pickup;
     public EventChannel pointScored;
-    public EventChannel pointNotScored; // assign below when shooting is implemented
+    public EventChannel pointNotScored;
     public GameObject smoke;
     public AudioSource pickUpSound;
     // the breaking sound is placed on the smoke
@@ -23,20 +23,19 @@ public class PigeonBehaviour : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet")) // to be added to bullet later on by @wenjin || @syasya (done)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
-            Debug.Log("Hit bullet");
             Destroy(gameObject);
-            // pointScored.Publish();
+            pointScored.Publish();
         }
         else if (collision.gameObject.CompareTag("Floor"))
         {
             GameObject breakingSmoke = Instantiate(this.smoke, gameObject.transform.position, gameObject.transform.rotation);
             breakingSmoke.GetComponent<AudioSource>().Play();
             Destroy(gameObject);
-            // pointScored.Publish(); // change to PointNotScored when bullets are implemented
+            pointNotScored.Publish();
         }
         else
         {
