@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b620bfd016432eadea9673115e1b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 1954300565}
   Indicator: {fileID: 438584117}
   InputIdentifier: LHTrigger
 --- !u!1 &935630644
