@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: -2902553275927054514}
   - component: {fileID: 826510706388029512}
   - component: {fileID: -5188828364808318074}
+  - component: {fileID: -2648590692028463056}
   m_Layer: 6
   m_Name: ClayPigeon
   m_TagString: Untagged
@@ -425,6 +426,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2648590692028463056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4317633587780533244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e460357fe0e49ce468095934f640d148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4366675063148061399
 GameObject:
   m_ObjectHideFlags: 0

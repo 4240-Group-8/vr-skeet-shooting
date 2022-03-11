@@ -30,11 +30,11 @@ public class HoopBehaviour : MonoBehaviour
     /// <param name="collision">Details about the collision which happened.</param>
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Pigeon"))
-        {
-            parentHoop = transform.parent.gameObject;
-            timeSlowed.Publish();
-        }
+        if (other.gameObject.GetComponent<PigeonTag>() == null)
+            return;
+        
+        parentHoop = transform.parent.gameObject;
+        timeSlowed.Publish();
     }
     public void ChangeColour()
     {
